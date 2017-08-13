@@ -1,0 +1,106 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Munchies</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a class="navbar-btn" href="#">Home</a></li>
+
+                <li ng-show="isM()|| isS()"><a class="navbar-btn" href="#market">Market</a></li>
+
+                <li ng-show="isM()|| isW()"><a class="navbar-btn" href="#workerCalendar">Schedule</a></li>
+
+                <li ng-show="isM()"><a class="navbar-btn" href="#reports">Reports</a></li>
+
+                <li class="divider"></li>
+                <li><a class="navbar-btn"  href="#searchModal" data-toggle="modal" data-target="#searchModal" ng-hide="!isLoggedIn() || isW()">Search</a></li>
+
+                <li ng-show="isG()"><a class="navbar-btn"  href="#guestHistory" data-toggle="modal" data-target="#guestHistory" ng-hide="!isLoggedIn()">History</a></li>
+
+                <li><a class="navbar-btn"  href="#login" data-toggle="modal" data-target="#loginModal" ng-hide="isLoggedIn()">Login</a></li>
+                <li><a class="navbar-btn" href="#register" ng-hide="isLoggedIn()">Register</a></li>
+                <li class="divider"></li>
+                <li ng-hide="isW()" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li ng-show="isSM()"><a href="#registersm">Register System Manager</a></li>
+                        <li ng-show="isSM()"><a href="#registerm">Register Manager</a></li>
+                        <li ng-show="isSM()"><a href="#registerr">Register Restaurant</a></li>
+                        <li ng-show="isSM()"><a href="#registers">Register Supplier</a></li>
+                        <li ng-show="isM()"><a href="#registerw">Register Worker</a></li>
+                        <li class="divider"></li>
+                        <li  ng-if="isM()"><a href="#listmeals">All meals</a></li>
+                        <li  ng-if="isM()"><a href="#addmeal">Create meal</a></li>
+                        <li class="divider"></li>
+                        <li  ng-if="isM()"><a href="#listdrinks">All drinks</a></li>
+                        <li  ng-if="isM()"><a href="#adddrink">Create drink</a></li>
+                        <li class="divider"></li>
+                        <li  ng-show="isM()"><a href="#listworkers">Workers</a></li>
+                        <li><a href="#restaurants">Restaurants</a></li>
+                        <li class="divider"></li>
+                        <li ng-show="isM()"><a href="#restaurantProfile">Restaurant Profile</a> </li>
+
+                    </ul>
+                </li>
+                <li ng-show="isWaiter()" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#waiter/createOrder">Create New Order</a></li>
+                        <li><a href="#waiter/getOrders">See Existing Orders</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#/waiter/getSegment">See working sector</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#worker">Edit personal information</a></li>
+                        <li><a href="#/worker/changePassword">Change password</a></li>
+                        <li class="divider"></li>
+
+                    </ul>
+                </li>
+                <li ng-show="isCook()" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#cook/getPendingMeals">See pending meal orders</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#worker">Edit personal information</a></li>
+                        <li><a href="#worker">Change password</a></li>
+                        <li class="divider"></li>
+
+                    </ul>
+                </li>
+
+                <li ng-show="isBartender()" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#/bartender/getPendingDrinks">See pending drink orders</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#worker">Edit personal information</a></li>
+                        <li><a href="#worker">Change password</a></li>
+                        <li class="divider"></li>
+
+                    </ul>
+                </li>
+
+                <li ng-show="isLoggedIn()">Hello {{USER.name}}</li>
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-show="isLoggedIn()"><a href="#logout" >Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+

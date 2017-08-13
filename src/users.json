@@ -1,0 +1,12 @@
+[ {
+  "username" : null,
+  "password" : "ad",
+  "firstName" : null,
+  "lastName" : "dada",
+  "role" : "Neka uloga",
+  "phone" : "addaad",
+  "email" : "daad@gmail.com",
+  "address" : "adda",
+  "picture" : "a",
+  "blocked" : false
+} ]

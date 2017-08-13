@@ -1,0 +1,94 @@
+<form class="form-horizontal" name="registerForm"   ng-submit="register()" novalidate>
+    <fieldset>
+        <legend>Register</legend>
+
+        <div class="form-group">
+            <label for="username" class="col-lg-2 control-label">Username</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="username" name="username" ng-model="username"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="firstName" class="col-lg-2 control-label">First Name</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="firstName" name="firstName" ng-model="firstName"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastName" class="col-lg-2 control-label">Last Name</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="lastName" name="lastName" ng-model="lastName"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="address" class="col-lg-2 control-label">Address</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="address" name="address" ng-model="address"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="phone" class="col-lg-2 control-label">Phone</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="phone" name="phone" ng-model="phone"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="picture" class="col-lg-2 control-label">Picture</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="picture" name="picture" ng-model="picture"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email" class="col-lg-2 control-label">Email</label>
+            <div class="col-lg-5">
+                <input type="email" class="form-control" id="email" name="email" ng-model="email" required/>
+            </div>
+        </div>
+        <p class="help-block" ng-show="registerForm.email.$dirty && registerForm.email.$invalid">Please enter a
+            proper email</p>
+
+        <div class="form-group">
+            <label for="password" class="col-lg-2 control-label">Password:</label>
+            <div class="col-lg-5">
+                <input type="password"
+                       class="form-control"
+                       id="password"
+                       name="password"
+                       ng-model="password" required/>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword" class="col-lg-2 control-label" >Confirm Password:</label>
+            <div class="col-lg-5">
+                <input type="password"
+                       class="form-control"
+                       id="confirmPassword"
+                       name="confirmPassword"
+                       ng-model="confirmPassword"
+                       validate-equals="password"/>
+            </div>
+
+        </div>
+        <p class="help-block"
+           ng-show="registerForm.confirmPassword.$dirty && registerForm.confirmPassword.$invalid ">The
+            passwords
+            don't match</p>
+
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button ng-disabled="registerForm.$invalid" type="submit" class="btn btn-primary">Submit
+                </button>
+            </div>
+        </div>
+
+
+    </fieldset>
+</form>
+
+</div>

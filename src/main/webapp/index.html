@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Login</title>
+    <script src="resources/js/dependencies/jquery-2.0.0.min.js"></script>
+    <script src='resources/js/dependencies/jquery-3.2.1.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+    <script src="//cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.min.js" ></script>
+
+    <link type="text/css" rel="stylesheet" href="resources/css/bootstrap.css">
+    <!-- Koristi sockjs biblioteku da se konektuje na /stomp endpoint -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/sockjs/1.0.3/sockjs.min.js"></script>
+    <!-- Koristi stomp biblioteku da se pretplati na brokerov /topic/message endpoint -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
+    <!--<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" rel="stylesheet"/>-->
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+
+    </style>
+</head>
+<body ng-app="SnippetApp" ng-controller="MainController" onload="initialize()">
+
+<div class="container" ng-include="'/resources/js/views/header.html'"></div>
+<div class="container" ng-include="'/resources/js/views/login.html'"></div>
+
+
+<!-- View Placeholder -->
+<div class="container">
+    <div data-ng-view>
+
+    </div>
+</div>
+<div class="container">
+
+</div>
+<!--div ng-include src="'resources/js/views/login.html'"></div-->
+
+
+<!-- Modules -->
+
+<script src="resources/js/app.js"></script>
+<script src="resources/js/app.config.js"></script>
+<!-- Controllers -->
+<script src="resources/js/controllers/MainController.js"></script>
+
+<!--Dependencies -->
+
+<script src="resources/js/dependencies/bootstrap.js"></script>
+<script src="resources/js/dependencies/angular-resource.js"></script>
+<script src="resources/js/dependencies/angular-route.js"></script>
+<script src="resources/js/dependencies/angular-drag-and-drop-lists.js"></script>
+<script src="resources/js/dependencies/lodash.js"></script>
+<script src="resources/js/dependencies/restangular.js"></script>
+<script src="resources/js/dependencies/angular-jwt.js"></script>
+<script src="resources/js/dependencies/html2canvas.js"></script>
+<script src="resources/js/dependencies/pdfmake.min.js"></script>
+<script src="resources/js/dependencies/ui-bootstrap-tpls-2.1.4.min.js"></script>
+<script src='resources/js/dependencies/moment.js'></script>
+<script src='resources/js/dependencies/fullcalendar.js'></script>
+<script src="resources/js/dependencies/angular-jwt.js"></script>
+
+<script src="resources/js/dependencies/Chart.js"></script>
+<script src="resources/js/dependencies/angular-chart.js"></script>
+<!--<script src="resources/js/dependencies/html2canvas.js"></script>-->
+<!--<script src="resources/js/dependencies/pdfmake.min.js"></script>-->
+<script src="resources/js/dependencies/ui-bootstrap-tpls-2.1.4.min.js"></script>
+
+
+</body>
+</html>
+
+<script>
+    // ------------------------------- geocode google maps -------------------------------------
+    var geocoder;
+    function initialize() {
+        geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(-34.397, 150.644);
+        var mapOptions = {
+            zoom: 8,
+            center: latlng
+        }
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    }
+
+    function codeAddress() {
+        initialize();
+        var address = document.getElementById('address').value;
+        geocoder.geocode({'address': address}, function (results, status) {
+            if (status == 'OK') {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+    }
+
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+            'Error: The Geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+    }
+    // ------------------------------- </geocode google maps -------------------------------------
+</script>
+<!--<script async defer-->
+<!--src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDv_MizAvSZs44NPCsJPL-7FvAmz8QUjbM&callback=initMap"-->
+<!--type="text/javascript"></script>-->
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDv_MizAvSZs44NPCsJPL-7FvAmz8QUjbM"
+        type="text/javascript"></script>
+<script>
+    var map, infoWindow;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 6
+        });
+        //infoWindow = new google.maps.InfoWindow;
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                infoWindow.setPosition(pos);
+                infoWindow.setContent('Location found.');
+                infoWindow.open(map);
+                map.setCenter(pos);
+            }, function () {
+                handleLocationError(true, infoWindow, map.getCenter());
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+        }
+    }
+</script>
+
+
+<!--Google Geocoding -->
