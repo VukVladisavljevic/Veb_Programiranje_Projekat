@@ -45,6 +45,25 @@ public class UserController {
         return new ResponseEntity<>(retuser, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/api/login",
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> login(@RequestBody UserDTO userDTO) {
+
+        logger.info("> login  user");
+
+        User retuser = userService.login(userDTO);
+
+        if (retuser == null) {
+            System.out.println(" User not existing");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        logger.info("< user logged in");
+        System.out.println("User successfully logged");
+
+        return new ResponseEntity<>(retuser, HttpStatus.OK);
+    }
+
 
 
 }

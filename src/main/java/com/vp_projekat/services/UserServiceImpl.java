@@ -28,4 +28,17 @@ public class UserServiceImpl implements UserService {
         return  newUser ;
     }
 
+    @Override
+    public User login(UserDTO userDTO) {
+        Users.load();
+        User retUser = Users.getUser(userDTO.getUserName());
+
+        if(retUser != null) {
+            if(retUser.getPassword().equals(userDTO.getPassword())) {
+                return retUser;
+            }
+        }
+        return null;
+    }
+
 }

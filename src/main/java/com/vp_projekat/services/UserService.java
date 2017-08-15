@@ -12,4 +12,6 @@ import org.springframework.stereotype.Service;
 public interface UserService {
 
     public User register(UserDTO userDTO);
+
+    public User login(UserDTO userDTO);
 }

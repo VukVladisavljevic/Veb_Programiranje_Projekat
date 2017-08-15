@@ -5,6 +5,9 @@ angular.module("SnippetApp").config(function ($routeProvider) {
     }).when('/register', {
         templateUrl: '/resources/js/views/register.html',
         controller: 'MainController'
+    }).when('/login', {
+        templateUrl: '/resources/js/views/login.html',
+        controller: 'MainController'
     }).otherwise({
         redirectTo: '/'
     });

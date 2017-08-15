@@ -1,5 +1,5 @@
 
-<div class="modal" id="loginModal" ng-controller="LoginController">
+<div class="modal" id="loginModal" ng-controller="MainController">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,8 +11,8 @@
                 <form class="form-signin" ng-submit="login()" role="form">
 
                     <img id="profile-img" class="profile-img-card" src="http://www.freeiconspng.com/uploads/food-icon-7.png" />
-                    <input type="email" class="form-control" placeholder="Email address" required="" autofocus=""
-                           id="email" name="email" ng-model="email">
+                    <input type="text" class="form-control" placeholder="Username" required="" autofocus=""
+                           id="username" name="username" ng-model="username">
                     <input type="password" class="form-control" placeholder="Password" required="" id="password"
                            name="password" ng-model="password">
                     <button class="btn btn-lg btn-primary btn-block" type="submit">

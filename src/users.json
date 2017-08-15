@@ -1,5 +1,5 @@
 [ {
-  "username" : null,
+  "username" : "lupus",
   "password" : "ad",
   "firstName" : null,
   "lastName" : "dada",
@@ -8,5 +8,16 @@
   "email" : "daad@gmail.com",
   "address" : "adda",
   "picture" : "a",
+  "blocked" : false
+}, {
+  "username" : null,
+  "password" : null,
+  "firstName" : null,
+  "lastName" : null,
+  "role" : null,
+  "phone" : null,
+  "email" : null,
+  "address" : null,
+  "picture" : null,
   "blocked" : false
 } ]
