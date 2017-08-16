@@ -111,4 +111,21 @@ public class Snippet {
     public void setComments(ArrayList<Comment> comments) {
         this.comments = comments;
     }
+
+    public void addComment(Comment c)
+    {
+        this.comments.add(c);
+    }
+
+    public void deleteComment(int cId)
+    {
+        for(Comment c:this.comments)
+        {
+            if(c.getId() == cId)
+            {
+                this.comments.remove(c);
+                return;
+            }
+        }
+    }
 }

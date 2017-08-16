@@ -1,0 +1,105 @@
+package com.vp_projekat.controllers;
+
+import com.vp_projekat.DTOs.CommentDTO;
+import com.vp_projekat.DTOs.GradeDTO;
+import com.vp_projekat.DTOs.SnippetDTO;
+import com.vp_projekat.beans.Comment;
+import com.vp_projekat.beans.Snippet;
+import com.vp_projekat.services.CommentService;
+import com.vp_projekat.services.SnippetService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+
+/**
+ * Created by Lupus on 8/16/2017.
+ */
+
+@RestController
+public class CommentController {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    private CommentService commentService;
+
+    @RequestMapping(value="/api/snippet/comment/add",
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Comment> addComment(@RequestBody CommentDTO commentDTO){
+        logger.info("> create new comment");
+
+        Comment retComment = commentService.addComment(commentDTO);
+
+        if(retComment == null){
+            System.out.println("comment not created");
+            return new ResponseEntity<Comment>(HttpStatus.BAD_REQUEST);
+        }
+
+        logger.info("< snippet created");
+
+        return new ResponseEntity<Comment>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/api/snippet/comment/delete",
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> deleteComment(@RequestBody CommentDTO commentDTO){
+        logger.info("> delete comment");
+
+        Boolean retComment = commentService.removeComment(commentDTO);
+
+        if(retComment == null){
+            System.out.println("comment not removed");
+            return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
+        }
+
+        logger.info("< comment removed");
+
+        return new ResponseEntity<Boolean>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/api/snippet/comment/rate",
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> rateComment(@RequestBody GradeDTO gradeDTO){
+        logger.info("> rate snippet");
+
+        Boolean retComment = commentService.rateComment(gradeDTO);
+
+        if(retComment == null){
+            System.out.println("Snippet not rated");
+            return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
+        }
+
+        logger.info("< snippet rated");
+
+        return new ResponseEntity<Boolean>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/api/comment/getAll",
+            method = RequestMethod.GET,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ArrayList<Comment>> getAllSnippets(SnippetDTO snippetDTO){
+        logger.info("> get comments");
+
+        ArrayList<Comment> retList = commentService.getAll(snippetDTO);
+
+        if(retList == null){
+            System.out.println("comments not got");
+            return new ResponseEntity< ArrayList<Comment>>(HttpStatus.BAD_REQUEST);
+        }
+
+        logger.info("< comments got");
+
+        return new ResponseEntity< ArrayList<Comment>>(HttpStatus.OK);
+    }
+}

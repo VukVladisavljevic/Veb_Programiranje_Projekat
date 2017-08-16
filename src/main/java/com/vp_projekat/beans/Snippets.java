@@ -110,6 +110,53 @@ public class Snippets {
         return snippets;
     }
 
+
+    public static void comment(Comment comment, Snippet snippet)
+    {
+        for(Snippet s:snippets)
+        {
+            if(s.getId() == snippet.getId())
+            {
+                s.addComment(comment);
+                save();
+                return;
+            }
+        }
+    }
+
+    public static void deleteComment(int commentId, Snippet snippet)
+    {
+        for(Snippet s:snippets)
+        {
+            if(s.getId() == snippet.getId())
+            {
+                s.deleteComment(commentId);
+                save();
+                return;
+            }
+        }
+    }
+
+    public static void gradeComment(User user, int grade,
+                                    Snippet snippet, Comment comment)
+    {
+        for(Snippet s:snippets)
+        {
+            if(s.getId() == snippet.getId())
+            {
+                for(Comment c:s.getComments())
+                {
+                    if(c.getId() == comment.getId())
+                    {
+                        c.gradeComment(user, grade);
+                        save();
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
     public static void setSnippets(ArrayList<Snippet> snippets) {
         Snippets.snippets = snippets;
     }
