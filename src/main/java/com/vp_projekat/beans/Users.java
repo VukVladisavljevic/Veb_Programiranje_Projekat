@@ -31,9 +31,11 @@ public class Users {
         Users.users = users;
     }
 
-    public ArrayList<User> getUsers() {
+    public static ArrayList<User> getUsers() {
+        Users.load();
         return users;
     }
+
 
     public Users()
     {
@@ -66,8 +68,6 @@ public class Users {
                     mapper.getTypeFactory().constructCollectionType(ArrayList.class, User.class));
             reader.close();
 
-            System.out.println(json);
-            System.out.println(Users.users.size());
         } catch (JsonParseException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

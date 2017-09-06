@@ -37,9 +37,13 @@
         </div>
 
         <div class="form-group">
-            <label for="picture" class="col-lg-2 control-label">Picture</label>
+            <label for="inputPic" class="col-lg-2 control-label">Picture</label>
             <div class="col-lg-5">
-                <input type="text" class="form-control" id="picture" name="picture" ng-model="picture"/>
+                <div>
+                    <img src="" height="100" width="100" name="profilePic"/>
+                    <input type="file" name="inputPic" id="inputPic"
+                           onchange="angular.element(this).scope().setPicture()" ng-model="inputPic">
+                </div>
             </div>
         </div>
 

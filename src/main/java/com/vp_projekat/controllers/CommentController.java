@@ -71,8 +71,12 @@ public class CommentController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> rateComment(@RequestBody GradeDTO gradeDTO){
-        logger.info("> rate snippet");
+        logger.info("> rate comment");
 
+        System.out.println(gradeDTO.getComment().getText());
+        System.out.println(gradeDTO.getUser().getUsername());
+        System.out.println(gradeDTO.getSnippet().getDescription());
+        System.out.println(gradeDTO.getGrade());
         Boolean retComment = commentService.rateComment(gradeDTO);
 
         if(retComment == null){
@@ -83,23 +87,5 @@ public class CommentController {
         logger.info("< snippet rated");
 
         return new ResponseEntity<Boolean>(HttpStatus.OK);
-    }
-
-    @RequestMapping(value="/api/comment/getAll",
-            method = RequestMethod.GET,
-            consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ArrayList<Comment>> getAllSnippets(SnippetDTO snippetDTO){
-        logger.info("> get comments");
-
-        ArrayList<Comment> retList = commentService.getAll(snippetDTO);
-
-        if(retList == null){
-            System.out.println("comments not got");
-            return new ResponseEntity< ArrayList<Comment>>(HttpStatus.BAD_REQUEST);
-        }
-
-        logger.info("< comments got");
-
-        return new ResponseEntity< ArrayList<Comment>>(HttpStatus.OK);
     }
 }

@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Created by Lupus on 8/9/2017.
  */
 public class ProgrammingLanguages {
-    private static ArrayList<String> languages;
+    private static ArrayList<String> languages = new ArrayList<String>();
 
     public static ArrayList<String> getLanguages() {
         return languages;
@@ -25,13 +25,13 @@ public class ProgrammingLanguages {
 
     public static void setLanguages(ArrayList<String> languages) {
         ProgrammingLanguages.languages = languages;
-        load();
+        save();
     }
 
     public static void addLanguage(String language)
     {
         ProgrammingLanguages.languages.add(language);
-        load();
+        save();
     }
 
     public static void load()
@@ -70,6 +70,10 @@ public class ProgrammingLanguages {
 
     public static boolean getLanguage(String language)
     {
+        if(ProgrammingLanguages.languages == null){
+            return false;
+        }
+
         for(String l : ProgrammingLanguages.languages)
         {
             if(l.equalsIgnoreCase(language))

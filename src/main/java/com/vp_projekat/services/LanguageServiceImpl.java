@@ -11,15 +11,16 @@ import java.util.ArrayList;
 
 @Service
 public class LanguageServiceImpl implements LanguageService {
+
     @Override
     public Boolean addLanguage(String language) {
         Boolean exists = ProgrammingLanguages.getLanguage(language);
         if(!exists)
         {
             ProgrammingLanguages.addLanguage(language);
-            return exists;
+            return true;
         }
-        return null;
+        return false;
     }
 
     @Override

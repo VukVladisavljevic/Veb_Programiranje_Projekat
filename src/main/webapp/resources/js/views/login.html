@@ -1,28 +1,15 @@
-
-<div class="modal" id="loginModal" ng-controller="MainController">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-
-            </div>
-            <div class="modal-body">
-
-                <form class="form-signin" ng-submit="login()" role="form">
-
-                    <img id="profile-img" class="profile-img-card" src="http://www.freeiconspng.com/uploads/food-icon-7.png" />
-                    <input type="text" class="form-control" placeholder="Username" required="" autofocus=""
-                           id="username" name="username" ng-model="username">
-                    <input type="password" class="form-control" placeholder="Password" required="" id="password"
-                           name="password" ng-model="password">
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">
-                        Log In
-                    </button>
-                </form>
-            </div>
-            <div class="modal-footer">
-
-            </div>
-        </div>
-    </div>
+<div class="row" align="center" ng-init="isLogged()">
+    <label>Login</label><br/><br/>
+    <form ng-submit="login()" role="form">
+        <label>Username</label>
+        <input type="text" name="username" id="username" ng-model="username"/>
+        <br/><br/>
+        <label>Password</label>
+        <input type="password" name="password" id="password" ng-model="password"/>
+        <br/><br/>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form><br/><br/>
+    <form ng-submit="loginAsGuest()" role="form">
+    <button type="submit" class="btn btn-link">Login as guest</button>
+    </form>
 </div>

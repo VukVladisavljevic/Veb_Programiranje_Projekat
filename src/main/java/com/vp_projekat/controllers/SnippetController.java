@@ -45,7 +45,7 @@ public class SnippetController {
 
         logger.info("< snippet created");
 
-        return new ResponseEntity<Snippet>(HttpStatus.OK);
+        return new ResponseEntity<Snippet>(retSnippet, HttpStatus.OK);
     }
 
     @RequestMapping(value="/api/snippet/delete",
@@ -63,7 +63,7 @@ public class SnippetController {
 
         logger.info("< snippet removed");
 
-        return new ResponseEntity<Snippet>(HttpStatus.OK);
+        return new ResponseEntity<Snippet>(retSnippet, HttpStatus.OK);
     }
 
     @RequestMapping(value="/api/snippet/block",
@@ -116,8 +116,8 @@ public class SnippetController {
         }
 
         logger.info("< snippets got");
-
-        return new ResponseEntity< ArrayList<Snippet>>(HttpStatus.OK);
+        System.out.println(retList.size());
+        return new ResponseEntity< ArrayList<Snippet>>(retList, HttpStatus.OK);
     }
 
 }

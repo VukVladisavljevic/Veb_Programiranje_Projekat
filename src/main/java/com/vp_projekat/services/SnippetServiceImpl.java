@@ -33,6 +33,7 @@ public class SnippetServiceImpl implements SnippetService {
     @Override
     public Snippet removeSnippet(SnippetDTO snippetDTO) {
         if(Snippets.getSnippet(snippetDTO.getId()) != null) {
+            System.out.println(snippetDTO.getId());
             return Snippets.deleteSnippet(snippetDTO.getId());
         }
         return  null;

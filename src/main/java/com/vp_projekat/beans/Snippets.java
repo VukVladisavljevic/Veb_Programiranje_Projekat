@@ -49,12 +49,14 @@ public class Snippets {
 
     public static Snippet deleteSnippet(int id)
     {
-        for(Snippet s: getSnippets())
+        for(Snippet s: snippets)
         {
             if(s.getId() == id)
             {
-                getSnippets().remove(s);
+                snippets.remove(s);
+                System.out.println(Snippets.snippets.size());
                 save();
+                System.out.println(Snippets.snippets.size());
                 return s;
             }
         }

@@ -27,11 +27,9 @@
 
     </style>
 </head>
-<body ng-app="SnippetApp" ng-controller="MainController" onload="initialize()">
+<body ng-app="SnippetApp" ng-controller="MainController">
 
 <div class="container" ng-include="'/resources/js/views/header.html'"></div>
-<div class="container" ng-include="'/resources/js/views/login.html'"></div>
-
 
 <!-- View Placeholder -->
 <div class="container">
@@ -51,7 +49,9 @@
 <script src="resources/js/app.config.js"></script>
 <!-- Controllers -->
 <script src="resources/js/controllers/MainController.js"></script>
-
+<script src="resources/js/controllers/UserController.js"></script>
+<script src="resources/js/controllers/SnippetController.js"></script>
+<script src="resources/js/controllers/LanguageController.js"></script>
 <!--Dependencies -->
 
 <script src="resources/js/dependencies/bootstrap.js"></script>
@@ -78,81 +78,3 @@
 </body>
 </html>
 
-<script>
-    // ------------------------------- geocode google maps -------------------------------------
-    var geocoder;
-    function initialize() {
-        geocoder = new google.maps.Geocoder();
-        var latlng = new google.maps.LatLng(-34.397, 150.644);
-        var mapOptions = {
-            zoom: 8,
-            center: latlng
-        }
-        map = new google.maps.Map(document.getElementById('map'), mapOptions);
-    }
-
-    function codeAddress() {
-        initialize();
-        var address = document.getElementById('address').value;
-        geocoder.geocode({'address': address}, function (results, status) {
-            if (status == 'OK') {
-                map.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: results[0].geometry.location
-                });
-            } else {
-                alert('Geocode was not successful for the following reason: ' + status);
-            }
-        });
-    }
-
-
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-            'Error: The Geolocation service failed.' :
-            'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
-    }
-    // ------------------------------- </geocode google maps -------------------------------------
-</script>
-<!--<script async defer-->
-<!--src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDv_MizAvSZs44NPCsJPL-7FvAmz8QUjbM&callback=initMap"-->
-<!--type="text/javascript"></script>-->
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDv_MizAvSZs44NPCsJPL-7FvAmz8QUjbM"
-        type="text/javascript"></script>
-<script>
-    var map, infoWindow;
-    function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 6
-        });
-        //infoWindow = new google.maps.InfoWindow;
-
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-
-                infoWindow.setPosition(pos);
-                infoWindow.setContent('Location found.');
-                infoWindow.open(map);
-                map.setCenter(pos);
-            }, function () {
-                handleLocationError(true, infoWindow, map.getCenter());
-            });
-        } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-        }
-    }
-</script>
-
-
-<!--Google Geocoding -->

@@ -1,14 +1,12 @@
 package com.vp_projekat.DTOs;
 
-import com.vp_projekat.beans.Role;
-
 /**
  * Created by Lupus on 8/9/2017.
  */
 public class UserDTO {
     //unique
-    private String userName;
-    private String name;
+    private String username;
+    private String firstName;
     private String lastName;
     private String password;
     //role
@@ -18,18 +16,6 @@ public class UserDTO {
     private String address;
     private String picture;
 
-    public String getUserName() {
-        return userName;
-    }
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
     public String getLastName() {
         return lastName;
     }
@@ -72,12 +58,12 @@ public class UserDTO {
     public void setPicture(String picture) {
         this.picture = picture;
     }
-    public UserDTO(String userName, String name, String lastName, String password,
+    public UserDTO(String username, String firstName, String lastName, String password,
                    String role, String phone, String email, String address,
                    String picture) {
         super();
-        this.userName = userName;
-        this.name = name;
+        this.setUsername(username);
+        this.setFirstName(firstName);
         this.lastName = lastName;
         this.password = password;
         this.role = role;
@@ -89,9 +75,25 @@ public class UserDTO {
 
     public UserDTO() {}
 
-    public UserDTO(String userName, String password)
+    public UserDTO(String username, String password)
     {
-        this.userName = userName;
+        this.setUsername(username);
         this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 }

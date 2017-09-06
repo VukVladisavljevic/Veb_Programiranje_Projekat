@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+
 /**
  * Created by Lupus on 8/9/2017.
  */
@@ -64,6 +66,61 @@ public class UserController {
         return new ResponseEntity<>(retuser, HttpStatus.OK);
     }
 
+    @RequestMapping(value="/api/users/getAll",
+            method = RequestMethod.GET,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ArrayList<User>> getAllUsers(){
+        logger.info("> get users");
+
+        ArrayList<User> retList = userService.getAll();
+
+        if(retList == null){
+            System.out.println("users not got");
+            return new ResponseEntity< ArrayList<User>>(HttpStatus.BAD_REQUEST);
+        }
+
+        logger.info("< users got");
+
+        return new ResponseEntity< ArrayList<User>>(retList, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/api/users/block",
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> block(@RequestBody UserDTO userDTO) {
+
+        logger.info("> block  user");
+
+        User retuser = userService.block(userDTO);
+
+        if (retuser == null) {
+            System.out.println(" User not block");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        logger.info("< block user");
+        System.out.println("User successfully block");
+
+        return new ResponseEntity<>(retuser, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/api/users/unblock",
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> unblock(@RequestBody UserDTO userDTO) {
+
+        logger.info("> unblock  user");
+
+        User retuser = userService.unblock(userDTO);
+
+        if (retuser == null) {
+            System.out.println(" User not unblock");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        logger.info("< unblock user");
+        System.out.println("User successfully unblock");
+
+        return new ResponseEntity<>(retuser, HttpStatus.OK);
+    }
 
 
 }

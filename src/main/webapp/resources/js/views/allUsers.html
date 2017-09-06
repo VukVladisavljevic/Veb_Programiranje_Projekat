@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div class="row" ng-init="loadUsers()">
+    <label>Search:
+        <input ng-model="searchText" id="searchText" name="searchText" ng-change="filterUsers()">
+    </label>
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Role</th>
+            <th>Block</th>
+            <th>Unblock</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="s in USERS track by $index">
+            <td> {{s.username}} </td>
+            <td> {{s.firstName}} </td>
+            <td> {{s.lastName}} </td>
+            <td> {{s.role}} </td>
+            <td>
+                <form ng-submit="block(s)" role="form" ng-show="isAdmin()">
+                    <button class="btn btn-link" type="submit" >Block</button>
+                </form>
+            </td>
+            <td>
+                <form ng-submit="unblock(s)" role="form" ng-show="isAdmin()">
+                    <button class="btn btn-link" type="submit" >Unblock</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

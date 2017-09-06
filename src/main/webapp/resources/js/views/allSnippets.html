@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div class="row" ng-init="loadSnippets()">
+    <h1>Existing snippets</h1>
+    <table id="tabela1"  class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Snippet description: </th>
+            <th>Language: </th>
+            <th>Created by: </th>
+            <th>Snippet details</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="s in SNIPPETS track by $index" >
+            <td style="padding-right: 15px">{{s.description}}</td>
+            <td style="padding-right: 15px">{{s.programmingLanguage}}</td>
+            <td style="padding-right: 15px">{{s.user.username}}</td>
+            <td> <button  ng-click="snippetDetails(s.id)"><img src="resources\css\icons\Webp.net-resizeimage.png"/></button> </td>
+            <!--<td style="width: 10%; height: auto" align="right"> <button ng-click="initiateOrderEditing($index)"></button> </td>-->
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+</div>
