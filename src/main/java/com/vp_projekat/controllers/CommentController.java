@@ -73,10 +73,6 @@ public class CommentController {
     public ResponseEntity<Boolean> rateComment(@RequestBody GradeDTO gradeDTO){
         logger.info("> rate comment");
 
-        System.out.println(gradeDTO.getComment().getText());
-        System.out.println(gradeDTO.getUser().getUsername());
-        System.out.println(gradeDTO.getSnippet().getDescription());
-        System.out.println(gradeDTO.getGrade());
         Boolean retComment = commentService.rateComment(gradeDTO);
 
         if(retComment == null){

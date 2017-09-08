@@ -1,5 +1,13 @@
 <div class="row" ng-init="loadSnippets()">
     <h1>Existing snippets</h1>
+    <label>Search:
+        <input ng-model="searchDescription" id="searchDescription" name="searchDescription" ng-change="filterByDescription()">
+    </label>
+    <select id="languageFilter" name="languageFilter" style="color:black" ng-model="languageFilter" ng-options="x for x in LANGUAGES"
+            ng-change="filterByLanguage()">
+    </select>
+    <input id="dateFilter" name="dateFilter" type="date" ng-change="filterByDate()" ng-model="dateFilter"/>
+
     <table id="tabela1"  class="table table-striped table-hover">
         <thead>
         <tr>
@@ -14,7 +22,7 @@
             <td style="padding-right: 15px">{{s.description}}</td>
             <td style="padding-right: 15px">{{s.programmingLanguage}}</td>
             <td style="padding-right: 15px">{{s.user.username}}</td>
-            <td> <button  ng-click="snippetDetails(s.id)"><img src="resources\css\icons\Webp.net-resizeimage.png"/></button> </td>
+            <td> <button  ng-click="snippetDetails(s.id)"><img src="resources\css\icons\details_icon.png"/></button> </td>
             <!--<td style="width: 10%; height: auto" align="right"> <button ng-click="initiateOrderEditing($index)"></button> </td>-->
         </tr>
 

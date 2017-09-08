@@ -1,26 +1,101 @@
 [ {
-  "id" : 2,
-  "description" : "opis2",
-  "code" : "kod2",
-  "programmingLanguage" : "python",
-  "codeRepository" : "repo2",
-  "user" : null,
+  "id" : 1,
+  "description" : "Opis",
+  "code" : "dakoadadda",
+  "programmingLanguage" : "Java",
+  "codeRepository" : "repo",
+  "user" : {
+    "username" : "xx",
+    "password" : "s",
+    "firstName" : "dadada",
+    "lastName" : "daada",
+    "role" : "admin",
+    "phone" : "dada",
+    "email" : "v@v.com",
+    "address" : "daad",
+    "picture" : "daadda",
+    "blocked" : false
+  },
   "blocked" : false,
-  "timestamp" : 1504446077096,
+  "timestamp" : 1504903045753,
+  "comments" : [ ]
+}, {
+  "id" : 2,
+  "description" : "ddaad",
+  "code" : "daadad",
+  "programmingLanguage" : "Java",
+  "codeRepository" : "addaad",
+  "user" : {
+    "username" : "xx",
+    "password" : "s",
+    "firstName" : "dadada",
+    "lastName" : "daada",
+    "role" : "admin",
+    "phone" : "dada",
+    "email" : "v@v.com",
+    "address" : "daad",
+    "picture" : "daadda",
+    "blocked" : false
+  },
+  "blocked" : false,
+  "timestamp" : 1504903087723,
   "comments" : [ {
-    "id" : 30,
-    "text" : "xx",
-    "time" : 1504640279642,
+    "id" : 1051,
+    "text" : "xa",
+    "time" : 1504903143973,
     "user" : {
-      "username" : "lupus",
-      "password" : "h",
-      "firstName" : "vuk",
-      "lastName" : "h",
-      "role" : "reg_user",
-      "phone" : "h",
-      "email" : "h@h.com",
-      "address" : "h",
-      "picture" : "h",
+      "username" : "xx",
+      "password" : "s",
+      "firstName" : "dadada",
+      "lastName" : "daada",
+      "role" : "admin",
+      "phone" : "dada",
+      "email" : "v@v.com",
+      "address" : "daad",
+      "picture" : "daadda",
+      "blocked" : false
+    },
+    "grade" : {
+      "users" : [ {
+        "username" : "lupus",
+        "password" : "h",
+        "firstName" : "vuk",
+        "lastName" : "h",
+        "role" : "reg_user",
+        "phone" : "h",
+        "email" : "h@h.com",
+        "address" : "h",
+        "picture" : "h",
+        "blocked" : false
+      }, {
+        "username" : "xx",
+        "password" : "s",
+        "firstName" : "dadada",
+        "lastName" : "daada",
+        "role" : "admin",
+        "phone" : "dada",
+        "email" : "v@v.com",
+        "address" : "daad",
+        "picture" : "daadda",
+        "blocked" : false
+      } ],
+      "positive" : 2,
+      "negative" : 0
+    }
+  }, {
+    "id" : 10,
+    "text" : "xa",
+    "time" : 1504906921608,
+    "user" : {
+      "username" : "xx",
+      "password" : "s",
+      "firstName" : "dadada",
+      "lastName" : "daada",
+      "role" : "admin",
+      "phone" : "dada",
+      "email" : "v@v.com",
+      "address" : "daad",
+      "picture" : "daadda",
       "blocked" : false
     },
     "grade" : {
@@ -36,259 +111,60 @@
         "picture" : "daadda",
         "blocked" : false
       } ],
-      "positive" : 1,
-      "negative" : 0
-    }
-  }, {
-    "id" : 51,
-    "text" : "xza",
-    "time" : 1504640358193,
-    "user" : {
-      "username" : "lupus",
-      "password" : "h",
-      "firstName" : "vuk",
-      "lastName" : "h",
-      "role" : "reg_user",
-      "phone" : "h",
-      "email" : "h@h.com",
-      "address" : "h",
-      "picture" : "h",
-      "blocked" : false
-    },
-    "grade" : {
-      "users" : [ ],
       "positive" : 0,
-      "negative" : 0
-    }
-  }, {
-    "id" : 53,
-    "text" : "xzaxx",
-    "time" : 1504640365433,
-    "user" : {
-      "username" : "lupus",
-      "password" : "h",
-      "firstName" : "vuk",
-      "lastName" : "h",
-      "role" : "reg_user",
-      "phone" : "h",
-      "email" : "h@h.com",
-      "address" : "h",
-      "picture" : "h",
-      "blocked" : false
-    },
-    "grade" : {
-      "users" : [ ],
-      "positive" : 0,
-      "negative" : 0
-    }
-  }, {
-    "id" : 117,
-    "text" : "zaas",
-    "time" : 1504640932039,
-    "user" : {
-      "username" : "lupus",
-      "password" : "h",
-      "firstName" : "vuk",
-      "lastName" : "h",
-      "role" : "reg_user",
-      "phone" : "h",
-      "email" : "h@h.com",
-      "address" : "h",
-      "picture" : "h",
-      "blocked" : false
-    },
-    "grade" : {
-      "users" : [ ],
-      "positive" : 0,
-      "negative" : 0
-    }
-  }, {
-    "id" : 140,
-    "text" : "xa",
-    "time" : 1504640993442,
-    "user" : {
-      "username" : "lupus",
-      "password" : "h",
-      "firstName" : "vuk",
-      "lastName" : "h",
-      "role" : "reg_user",
-      "phone" : "h",
-      "email" : "h@h.com",
-      "address" : "h",
-      "picture" : "h",
-      "blocked" : false
-    },
-    "grade" : {
-      "users" : [ ],
-      "positive" : 0,
-      "negative" : 0
-    }
-  }, {
-    "id" : 176,
-    "text" : "aaaaa",
-    "time" : 1504641015250,
-    "user" : {
-      "username" : "lupus",
-      "password" : "h",
-      "firstName" : "vuk",
-      "lastName" : "h",
-      "role" : "reg_user",
-      "phone" : "h",
-      "email" : "h@h.com",
-      "address" : "h",
-      "picture" : "h",
-      "blocked" : false
-    },
-    "grade" : {
-      "users" : [ ],
-      "positive" : 0,
-      "negative" : 0
-    }
-  }, {
-    "id" : 205,
-    "text" : "dadaddaad",
-    "time" : 1504641161146,
-    "user" : {
-      "username" : "lupus",
-      "password" : "h",
-      "firstName" : "vuk",
-      "lastName" : "h",
-      "role" : "reg_user",
-      "phone" : "h",
-      "email" : "h@h.com",
-      "address" : "h",
-      "picture" : "h",
-      "blocked" : false
-    },
-    "grade" : {
-      "users" : [ ],
-      "positive" : 0,
-      "negative" : 0
+      "negative" : 1
     }
   } ]
 }, {
   "id" : 3,
-  "description" : "opis",
-  "code" : "neki kod",
-  "programmingLanguage" : "python",
-  "codeRepository" : "repo",
+  "description" : "j",
+  "code" : "j",
+  "programmingLanguage" : "Java",
+  "codeRepository" : "j",
   "user" : {
-    "username" : "lupus",
-    "password" : "ad",
-    "firstName" : null,
-    "lastName" : "dada",
-    "role" : "reg_user",
-    "phone" : "addaad",
-    "email" : "xxxad@gmail.com",
-    "address" : "adda",
-    "picture" : "a",
+    "username" : "xx",
+    "password" : "s",
+    "firstName" : "dadada",
+    "lastName" : "daada",
+    "role" : "admin",
+    "phone" : "dada",
+    "email" : "v@v.com",
+    "address" : "daad",
+    "picture" : "daadda",
     "blocked" : false
   },
   "blocked" : false,
-  "timestamp" : 1504561454488,
+  "timestamp" : 1504903173742,
   "comments" : [ {
-    "id" : 1,
-    "text" : "komentar budale",
-    "time" : 1504639831494,
+    "id" : 1065,
+    "text" : "asasasasaassaas",
+    "time" : 1504903242610,
     "user" : {
-      "username" : "lupus",
-      "password" : "h",
-      "firstName" : "vuk",
-      "lastName" : "h",
-      "role" : "reg_user",
-      "phone" : "h",
-      "email" : "h@h.com",
-      "address" : "h",
-      "picture" : "h",
+      "username" : "xx",
+      "password" : "s",
+      "firstName" : "dadada",
+      "lastName" : "daada",
+      "role" : "admin",
+      "phone" : "dada",
+      "email" : "v@v.com",
+      "address" : "daad",
+      "picture" : "daadda",
       "blocked" : false
     },
     "grade" : {
-      "users" : [ ],
-      "positive" : 0,
-      "negative" : 0
-    }
-  }, {
-    "id" : 6,
-    "text" : "komentar budale2",
-    "time" : 1504640125937,
-    "user" : {
-      "username" : "lupus",
-      "password" : "h",
-      "firstName" : "vuk",
-      "lastName" : "h",
-      "role" : "reg_user",
-      "phone" : "h",
-      "email" : "h@h.com",
-      "address" : "h",
-      "picture" : "h",
-      "blocked" : false
-    },
-    "grade" : {
-      "users" : [ ],
-      "positive" : 0,
-      "negative" : 0
-    }
-  }, {
-    "id" : 13,
-    "text" : "ad",
-    "time" : 1504640138346,
-    "user" : {
-      "username" : "lupus",
-      "password" : "h",
-      "firstName" : "vuk",
-      "lastName" : "h",
-      "role" : "reg_user",
-      "phone" : "h",
-      "email" : "h@h.com",
-      "address" : "h",
-      "picture" : "h",
-      "blocked" : false
-    },
-    "grade" : {
-      "users" : [ ],
-      "positive" : 0,
-      "negative" : 0
-    }
-  }, {
-    "id" : 16,
-    "text" : "12123131123",
-    "time" : 1504640141151,
-    "user" : {
-      "username" : "lupus",
-      "password" : "h",
-      "firstName" : "vuk",
-      "lastName" : "h",
-      "role" : "reg_user",
-      "phone" : "h",
-      "email" : "h@h.com",
-      "address" : "h",
-      "picture" : "h",
-      "blocked" : false
-    },
-    "grade" : {
-      "users" : [ ],
-      "positive" : 0,
-      "negative" : 0
-    }
-  }, {
-    "id" : 19,
-    "text" : "xxxxx",
-    "time" : 1504640143931,
-    "user" : {
-      "username" : "lupus",
-      "password" : "h",
-      "firstName" : "vuk",
-      "lastName" : "h",
-      "role" : "reg_user",
-      "phone" : "h",
-      "email" : "h@h.com",
-      "address" : "h",
-      "picture" : "h",
-      "blocked" : false
-    },
-    "grade" : {
-      "users" : [ ],
-      "positive" : 0,
+      "users" : [ {
+        "username" : "lupus",
+        "password" : "h",
+        "firstName" : "vuk",
+        "lastName" : "h",
+        "role" : "reg_user",
+        "phone" : "h",
+        "email" : "h@h.com",
+        "address" : "h",
+        "picture" : "h",
+        "blocked" : false
+      } ],
+      "positive" : 1,
       "negative" : 0
     }
   } ]

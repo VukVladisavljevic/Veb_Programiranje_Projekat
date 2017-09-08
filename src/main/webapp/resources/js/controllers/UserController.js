@@ -15,18 +15,31 @@ angular.module("SnippetApp")
                     dataType : "text",
                     success : function(data) {
                         $scope.USERS = JSON.parse(data);
-                        if(!$scope.$$phase) {
-                            $scope.$apply();
-                        }
+                        $scope.$apply();
                     },
                     error : function(XMLHttpRequest, textStatus, errorThrown) {
                     }
                 });
             };
 
+            $scope.ableToBlock = function (user) {
+                if($rootScope.USER.role === "admin" && user.role !== "admin" && user.blocked === false){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            $scope.ableToUnblock = function (user) {
+                if($rootScope.USER.role === "admin" && user.role !== "admin" && user.blocked === true){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
             $scope.block = function(user)
             {
-                alert("blokiranje");
                 var userData = JSON.stringify({
                     "username": user.username
                 });
@@ -39,7 +52,8 @@ angular.module("SnippetApp")
                     data : userData,
                     success : function(data) {
                         console.log("blokiran");
-                        //$scope.loadData();
+                        $scope.loadUsers();
+
                     },
                     error : function(XMLHttpRequest, textStatus, errorThrown) {
                         //toaster poruka
@@ -62,12 +76,40 @@ angular.module("SnippetApp")
                     data : userData,
                     success : function(data) {
                         console.log("odblokiran");
-                        //$scope.loadData();
+                        $scope.loadUsers();
+
                     },
                     error : function(XMLHttpRequest, textStatus, errorThrown) {
                         //toaster poruka
 
                     }
                 });
+            }
+
+            $scope.filterUsers = function() {
+                var filteredList = [];
+
+                if($scope.searchText === undefined || $scope.searchText === ""){
+                    return;
+                }
+                var url = "/api/users/getAll";
+                $.ajax({
+                    type : 'GET',
+                    url : url,
+                    contentType : 'application/json',
+                    dataType : "text",
+                    success : function(data) {
+                        $scope.USERS = JSON.parse(data);
+                    },
+                    error : function(XMLHttpRequest, textStatus, errorThrown) {
+                    }
+                });
+
+                for(var i = 0; i < $scope.USERS.length; i++){
+                    if($scope.USERS[i].username.includes($scope.searchText)){
+                        filteredList.push($scope.USERS[i]);
+                    }
+                }
+                $scope.USERS = filteredList;
             }
         }]);

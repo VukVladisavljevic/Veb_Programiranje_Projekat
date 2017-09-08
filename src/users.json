@@ -8,7 +8,7 @@
   "email" : "h@h.com",
   "address" : "h",
   "picture" : "h",
-  "blocked" : true
+  "blocked" : false
 }, {
   "username" : "xx",
   "password" : "s",
@@ -30,7 +30,7 @@
   "email" : "v@v.com",
   "address" : "addada",
   "picture" : null,
-  "blocked" : false
+  "blocked" : true
 }, {
   "username" : "j",
   "password" : "d",

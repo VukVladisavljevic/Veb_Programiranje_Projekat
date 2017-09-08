@@ -16,18 +16,18 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="s in USERS track by $index">
-            <td> {{s.username}} </td>
-            <td> {{s.firstName}} </td>
-            <td> {{s.lastName}} </td>
-            <td> {{s.role}} </td>
+        <tr ng-repeat="u in USERS track by $index">
+            <td> {{u.username}} </td>
+            <td> {{u.firstName}} </td>
+            <td> {{u.lastName}} </td>
+            <td> {{u.role}} </td>
             <td>
-                <form ng-submit="block(s)" role="form" ng-show="isAdmin()">
+                <form ng-submit="block(u)" role="form" ng-show="ableToBlock(u)">
                     <button class="btn btn-link" type="submit" >Block</button>
                 </form>
             </td>
             <td>
-                <form ng-submit="unblock(s)" role="form" ng-show="isAdmin()">
+                <form ng-submit="unblock(u)" role="form" ng-show="ableToUnblock(u)">
                     <button class="btn btn-link" type="submit" >Unblock</button>
                 </form>
             </td>

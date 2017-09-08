@@ -37,6 +37,8 @@ public class CommentServiceImpl implements CommentService{
     @Override
     public Boolean rateComment(GradeDTO gradeDTO) {
         User user = Users.getUser(gradeDTO.getUser().getUsername());
+        System.out.println("OCEN");
+        System.out.println(gradeDTO.getGrade());
         if(user.getRole().equals("ANONIMUS"))
         {
             System.out.println( "BAD_REQUEST");

@@ -9,23 +9,23 @@
         <br/>
 
             <p style="border:3px; border-style:solid; border-color:#FF0000; padding: 1em;">
-                Language: {{currentSnippet.USER.username}}<br>Language: {{currentSnippet.programmingLanguage}}</p>
+                Username: {{currentSnippet.user.username}}<br>Language: {{currentSnippet.programmingLanguage}}</p>
         </div>
         <table class="table">
             <thead>
             <tr>
                 <td>
-                    <form ng-show="showDeleteSnippet(s)" ng-submit="deleteSnippet(s)" role="form">
+                    <form ng-show="ableToDelete()" ng-submit="deleteSnippet()" role="form">
                         <button class="btn btn-link" type="submit" >Remove</button>
                     </form>
                 </td>
                 <td>
-                    <form ng-show="isAdmin()&&!s.blocked" ng-submit="blockSnippet(s)" role="form">
+                    <form ng-show="ableToBlock()" ng-submit="blockSnippet()" role="form">
                         <button class="btn btn-link" type="submit" >Block</button>
                     </form>
                 </td>
                 <td>
-                    <form ng-show="isAdmin()&&s.blocked" ng-submit="unblockSnippet(s)" role="form">
+                    <form ng-show="ableToUnblock()" ng-submit="unblockSnippet()" role="form">
                         <button class="btn btn-link" type="submit" >Unblock</button>
                     </form>
                 </td>
@@ -40,12 +40,11 @@
                 <tr>
                     <td>
                         <div>
-                            <button style="float: left; clear: both;" ng-click="gradeComment(c)"><img src="resources\css\icons\vote_up_icon.png"/></button>
+                            <button ng-show="ableToRate(c)" style="float: left; clear: both;" ng-click="rateUp(c)"><img src="resources\css\icons\vote_up_icon.png"/></button>
                         </div>
                         <div>
-                            <button  style="float: left; clear: both;" ng-click="snippetDetails(s.id)"><img src="resources\css\icons\vote_down_icon.png"/></button>
+                            <button ng-show="ableToRate(c)" style="float: left; clear: both;" ng-click="rateDown(c)"><img src="resources\css\icons\vote_down_icon.png"/></button>
                         </div>
-
                     </td>
                     <td>
                         {{c.text}}
@@ -58,7 +57,7 @@
                 </tbody>
             </table>
         </div>
-        <form ng-show="!blocked(s)" ng-submit="commentSnippet(myComment)" role="form">
+        <form ng-show="ableToComment()" ng-submit="commentSnippet(myComment)" role="form">
             <input type="text" id="myComment" name="myComment" ng-model="myComment"/>
             <button class="btn btn-primary" type="submit">Comment</button>
         </form>

@@ -20,6 +20,7 @@ public class ProgrammingLanguages {
     private static ArrayList<String> languages = new ArrayList<String>();
 
     public static ArrayList<String> getLanguages() {
+        load();
         return languages;
     }
 
