@@ -1,4 +1,4 @@
-<div class="row" ng-init="loadUsers()">
+<div class="row" ng-init="loadUsers()" ng-show="isLogged()">
     <label>Search:
         <input ng-model="searchText" id="searchText" name="searchText" ng-change="filterUsers()">
     </label>

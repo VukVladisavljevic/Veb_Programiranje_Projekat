@@ -45,9 +45,20 @@ angular.module("SnippetApp").controller('MainController', ['$rootScope', '$http'
             {
                 return true;
             }
-            if(localStorage.getItem("LoggedUser") !== "" && localStorage.getItem("LoggedUser") !== null)
+            if(localStorage.getItem("LoggedUser") != "" && localStorage.getItem("LoggedUser") != null)
             {
-                return true;
+                var url = "/api/loadData";
+                $.ajax({
+                    type : 'GET',
+                    url : url,
+                    contentType : 'text/plain',
+                    dataType : "text"
+                });
+                $rootScope.USER = JSON.parse(localStorage.getItem("LoggedUser"));
+
+                if(!$scope.$$phase) {
+                    $scope.$apply();
+                }
             }
             return false;
         };

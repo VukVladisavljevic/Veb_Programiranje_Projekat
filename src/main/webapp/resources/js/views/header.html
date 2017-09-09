@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default">
-    <div class="container-fluid">
+    <div class="container-fluid" >
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1">
@@ -20,7 +20,7 @@
                             class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a class="navbar-btn" href="#allSnippets">All snippets</a></li>
-                        <li ng-show="!USER.blocked"><a class="navbar-btn" href="#addSnippet">Create new snippet</a></li>
+                        <li ng-show="isLogged()&&!USER.blocked"><a class="navbar-btn" href="#addSnippet">Create new snippet</a></li>
                     </ul>
                 </li>
 

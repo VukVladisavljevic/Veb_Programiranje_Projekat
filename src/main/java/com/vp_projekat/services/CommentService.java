@@ -15,11 +15,11 @@ import java.util.ArrayList;
 
 @Service
 public interface CommentService {
-    Comment addComment(CommentDTO snippetDTO);
+    String addComment(CommentDTO snippetDTO);
 
     Boolean removeComment(CommentDTO snippetDTO);
 
-    Boolean rateComment(GradeDTO gradeDTO);
+    String rateComment(GradeDTO gradeDTO);
 
     ArrayList<Comment> getAll(SnippetDTO snippetDTO);
 }

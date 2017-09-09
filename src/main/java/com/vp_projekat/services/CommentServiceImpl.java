@@ -19,13 +19,23 @@ import java.util.ArrayList;
 public class CommentServiceImpl implements CommentService{
 
     @Override
-    public Comment addComment(CommentDTO commentDTO) {
+    public String addComment(CommentDTO commentDTO) {
 
         User user = Users.getUser(commentDTO.getUser().getUsername());
-
+        if(user == null){
+            return "BAD_REQUEST";
+        }
+        if(user.isBlocked())
+        {
+            return "BLOCKED";
+        }
+        if(Snippets.getSnippet(commentDTO.getSnippet().getId()).isBlocked())
+        {
+            return "BLOCKED_SNIPPET";
+        }
         Comment comment = new Comment(commentDTO.getText(), commentDTO.getUser());
         Snippets.comment(comment, commentDTO.getSnippet());
-        return comment;
+        return "OK";
     }
 
     @Override
@@ -35,23 +45,19 @@ public class CommentServiceImpl implements CommentService{
     }
 
     @Override
-    public Boolean rateComment(GradeDTO gradeDTO) {
+    public String rateComment(GradeDTO gradeDTO) {
         User user = Users.getUser(gradeDTO.getUser().getUsername());
-        System.out.println("OCEN");
-        System.out.println(gradeDTO.getGrade());
-        if(user.getRole().equals("ANONIMUS"))
+        if(user.getRole().equalsIgnoreCase("guest"))
         {
-            System.out.println( "BAD_REQUEST");
-            return false;
+            return "BAD_REQUEST";
         }
         if(user.isBlocked())
         {
-            System.out.println( "BAD_REQUEST");
-            return false;
+            return "BAD_REQUEST";
         }
         Snippets.gradeComment(user, gradeDTO.getGrade(),
                 gradeDTO.getSnippet(), gradeDTO.getComment());
-        return true;
+        return "OK";
     }
 
     @Override

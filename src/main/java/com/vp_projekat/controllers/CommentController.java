@@ -34,19 +34,19 @@ public class CommentController {
     @RequestMapping(value="/api/snippet/comment/add",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Comment> addComment(@RequestBody CommentDTO commentDTO){
+    public ResponseEntity<String> addComment(@RequestBody CommentDTO commentDTO){
         logger.info("> create new comment");
 
-        Comment retComment = commentService.addComment(commentDTO);
+        String retComment = commentService.addComment(commentDTO);
 
         if(retComment == null){
             System.out.println("comment not created");
-            return new ResponseEntity<Comment>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
         }
 
         logger.info("< snippet created");
 
-        return new ResponseEntity<Comment>(HttpStatus.OK);
+        return new ResponseEntity<String>(HttpStatus.OK);
     }
 
     @RequestMapping(value="/api/snippet/comment/delete",
@@ -70,18 +70,18 @@ public class CommentController {
     @RequestMapping(value="/api/snippet/comment/rate",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> rateComment(@RequestBody GradeDTO gradeDTO){
+    public ResponseEntity<String> rateComment(@RequestBody GradeDTO gradeDTO){
         logger.info("> rate comment");
 
-        Boolean retComment = commentService.rateComment(gradeDTO);
+        String retComment = commentService.rateComment(gradeDTO);
 
         if(retComment == null){
             System.out.println("Snippet not rated");
-            return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
         }
 
         logger.info("< snippet rated");
 
-        return new ResponseEntity<Boolean>(HttpStatus.OK);
+        return new ResponseEntity<String>(HttpStatus.OK);
     }
 }

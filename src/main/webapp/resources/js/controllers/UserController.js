@@ -21,7 +21,7 @@ angular.module("SnippetApp")
                     }
                 });
             };
-
+            
             $scope.ableToBlock = function (user) {
                 if($rootScope.USER.role === "admin" && user.role !== "admin" && user.blocked === false){
                     return true;

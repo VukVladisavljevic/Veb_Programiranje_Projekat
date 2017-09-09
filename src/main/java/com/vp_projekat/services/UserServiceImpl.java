@@ -1,6 +1,8 @@
 package com.vp_projekat.services;
 
 import com.vp_projekat.DTOs.UserDTO;
+import com.vp_projekat.beans.ProgrammingLanguages;
+import com.vp_projekat.beans.Snippets;
 import com.vp_projekat.beans.User;
 import com.vp_projekat.beans.Users;
 import org.springframework.stereotype.Service;
@@ -34,6 +36,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User login(UserDTO userDTO) {
         Users.load();
+        ProgrammingLanguages.load();
+        Snippets.load();
         User retUser = Users.getUser(userDTO.getUsername());
         if(retUser != null) {
             if(retUser.getPassword().equals(userDTO.getPassword())) {

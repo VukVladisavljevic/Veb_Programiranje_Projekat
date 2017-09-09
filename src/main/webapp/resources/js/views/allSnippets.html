@@ -1,9 +1,9 @@
-<div class="row" ng-init="loadSnippets()">
+<div class="row" ng-init="loadSnippets()" ng-show="isLogged()">
     <h1>Existing snippets</h1>
     <label>Search:
         <input ng-model="searchDescription" id="searchDescription" name="searchDescription" ng-change="filterByDescription()">
     </label>
-    <select id="languageFilter" name="languageFilter" style="color:black" ng-model="languageFilter" ng-options="x for x in LANGUAGES"
+    <select ng-model="selectedLanguage" ng-options="x for x in LANGUAGES"
             ng-change="filterByLanguage()">
     </select>
     <input id="dateFilter" name="dateFilter" type="date" ng-change="filterByDate()" ng-model="dateFilter"/>

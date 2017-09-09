@@ -1,15 +1,13 @@
 <div class="row" ng-init="loadLanguages()">
-    <h1>Existing programming languages</h1>
+    <h1>Added programming languages</h1>
     <table id="tabela1"  class="table table-striped table-hover">
         <thead>
         <tr>
-            <th>Article name</th>
-            <th>Price</th>
+            <th>Language name</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="l in LANGUAGES track by $index" >
-            <td style="padding-right: 15px">{{$index+1}}</td>
             <td style="padding-right: 15px">{{l}}</td>
         </tr>
         </tbody>

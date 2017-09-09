@@ -15,7 +15,7 @@ angular.module("SnippetApp").controller('LanguageController', ['$scope', '$rootS
                 contentType: 'application/json',
                 dataType: 'text',
                 success:  function (data) {
-                    alert(JSON.stringify(data));
+
                     $scope.LANGUAGES = JSON.parse(data);
                     $scope.$apply();
                 },
@@ -42,7 +42,7 @@ angular.module("SnippetApp").controller('LanguageController', ['$scope', '$rootS
                 data : language,
                 success:  function (data) {
                     if(data){
-                        alert("Uspesno dodat");
+                        $window.location = '#allLanguages';
                     }
                     else {
                         alert("ne valja dodavanje jezika");

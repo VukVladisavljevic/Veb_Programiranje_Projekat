@@ -1,7 +1,10 @@
 package com.vp_projekat.controllers;
 
 import com.vp_projekat.DTOs.UserDTO;
+import com.vp_projekat.beans.ProgrammingLanguages;
+import com.vp_projekat.beans.Snippets;
 import com.vp_projekat.beans.User;
+import com.vp_projekat.beans.Users;
 import com.vp_projekat.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +48,20 @@ public class UserController {
         System.out.println("User successfully created");
 
         return new ResponseEntity<>(retuser, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/api/loadData",
+            method = RequestMethod.GET,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> loadData() {
+
+        logger.info("> register  user");
+        Users.load();
+        ProgrammingLanguages.load();
+        Snippets.load();
+        logger.info("< register user");
+        System.out.println("User successfully loaded");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/api/login",

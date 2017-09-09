@@ -95,14 +95,14 @@ angular.module("SnippetApp").controller('SnippetController', ['$scope', '$rootSc
 
         $scope.ableToRate = function (comment) {
             {
-                if($rootScope.isGuest())
+                if($rootScope.isGuest() || $rootScope.USER.blocked)
                 {
                     return false;
                 }
+
                 for(var i = 0; i < comment.grade.users.length; i++)
                 {
-
-                    if(strcmp(comment.grade.users[i].userName, $rootScope.USER.userName) == 0)
+                    if(comment.grade.users[i].username.toUpperCase() === $rootScope.USER.username.toUpperCase())
                     {
                         return false;
                     }
@@ -130,8 +130,8 @@ angular.module("SnippetApp").controller('SnippetController', ['$scope', '$rootSc
                 data: snippet,
                 success: function (data) {
                     if (data !== null) {
-                        alert("DODAT");
                         $rootScope.currentSnippet = JSON.parse(data);
+                        $window.location = '#allSnippets';
 
                     }
                     else {
@@ -250,6 +250,11 @@ angular.module("SnippetApp").controller('SnippetController', ['$scope', '$rootSc
         $scope.loadDetailedSnippet = function () {
 
         }
+        
+        $scope.parseTimestamp = function (input) {
+            var d = new Date(input);
+            return (d.toLocaleDateString());
+        }
 
         $scope.commentSnippet = function (txt) {
             var comment = JSON.stringify({
@@ -265,16 +270,10 @@ angular.module("SnippetApp").controller('SnippetController', ['$scope', '$rootSc
                 dataType: "text",
                 data: comment,
                 success: function (data) {
-                    //redirekt
-                    if (data !== null) {
-                        $scope.reloadSnippet();
-                    }
-                    else {
-                        alert("NIJE");
-                    }
+                    console.log(data);
+                    $scope.reloadSnippet();
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    //toaster poruka
                     alert("GRESKA");
                 }
             });
@@ -300,7 +299,6 @@ angular.module("SnippetApp").controller('SnippetController', ['$scope', '$rootSc
             } else {
                 return;
             }
-            alert($scope.grade);
             var gradeData = JSON.stringify({
                 "comment": comment,
                 "user": $rootScope.USER,
@@ -315,10 +313,8 @@ angular.module("SnippetApp").controller('SnippetController', ['$scope', '$rootSc
                 dataType: "text",
                 data: gradeData,
                 success: function (data) {
-                    //redirekt
-                    alert("PR");
-                   // $scope.reloadSnippet();
-                    //$scope.loadData();
+                    console.log(data);
+                    $scope.reloadSnippet();
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
 
@@ -336,6 +332,7 @@ angular.module("SnippetApp").controller('SnippetController', ['$scope', '$rootSc
                     contentType: 'application/json',
                     dataType: "text",
                     success: function (data) {
+                        console.log(data);
                         $scope.SNIPPETS = JSON.parse(data);
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -361,6 +358,7 @@ angular.module("SnippetApp").controller('SnippetController', ['$scope', '$rootSc
                     contentType: 'application/json',
                     dataType: "text",
                     success: function (data) {
+
                         $scope.SNIPPETS = JSON.parse(data);
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -368,11 +366,11 @@ angular.module("SnippetApp").controller('SnippetController', ['$scope', '$rootSc
                 });
 
                 for (var i = 0; i < $scope.SNIPPETS.length; i++) {
-                    var snippetDate = new Date($scope.SNIPPETS[i].time);
+                    var snippetDate = new Date($scope.SNIPPETS[i].timestamp);
                     if (snippetDate.getFullYear() === $scope.dateFilter.getFullYear() &&
                         snippetDate.getDate() === $scope.dateFilter.getDate() &&
                         snippetDate.getMonth() === $scope.dateFilter.getMonth()) {
-                        result.push($scope.SNIPPETS[i]);
+                        filteredList.push($scope.SNIPPETS[i]);
                     }
                 }
                 $scope.SNIPPETS = filteredList;
@@ -381,7 +379,8 @@ angular.module("SnippetApp").controller('SnippetController', ['$scope', '$rootSc
 
         $scope.filterByLanguage = function () {
             var filteredList = [];
-            if ($scope.languageFilter !== undefined || $scope.languageFilter !== "") {
+
+            if ($scope.selectedLanguage !== undefined || $scope.selectedLanguage !== "") {
                 var url = "/api/snippet/getAll";
                 $.ajax({
                     type: 'GET',
@@ -396,11 +395,33 @@ angular.module("SnippetApp").controller('SnippetController', ['$scope', '$rootSc
                 });
 
                 for (var i = 0; i < $scope.SNIPPETS.length; i++) {
-                    if ($scope.SNIPPETS[i].language === $scope.languageFilter) {
+                    if ($scope.SNIPPETS[i].programmingLanguage === $scope.selectedLanguage) {
                         filteredList.push($scope.SNIPPETS[i]);
                     }
                 }
                 $scope.SNIPPETS = filteredList;
+            }
+        }
+
+        $scope.sortComments = function () {
+
+            $rootScope.currentSnippet.comments.sort(function (a, b) {
+                if (a.grade.positive > b.grade.positive) {
+                    return -1;
+                }
+                if (a.grade.positive < b.grade.positive) {
+                    return 1;
+                }
+                if (a.grade.negative < b.grade.negative) {
+                    return -1;
+                }
+                if (a.grade.negative > b.grade.negative) {
+                    return 1;
+                }
+                return 0;
+            });
+            if (!$scope.$$phase) {
+                $scope.$apply();
             }
         }
     }]);

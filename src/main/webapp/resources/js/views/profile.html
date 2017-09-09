@@ -1,29 +1,20 @@
-<div class="row" ng-init="loadLanguages()">
-    <h2>Personal user information</h2>
-    <table id="tabela1"  class="table table-striped table-hover">
-        <thead>
-        <tr>
-            <th>First name: </th>
-            <th>Last name: </th>
-            <th>Username: </th>
-            <th>E-mail: </th>
-            <th>Address: </th>
-            <th>Phone: </th>
-            <th>Picture</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>{{USER.firstName}}</td>
-            <td>{{USER.lastName}}</td>
-            <td>{{USER.username}}</td>
-            <td>{{USER.email}}</td>
-            <td>{{USER.address}}</td>
-            <td>{{USER.phone}}</td>
-            <td>SLIKA</td>
+<br><br>
+<div ng-init="isLogged()" class="container-fluid well span6">
+    <div style="text-align: center">
+    <h1 style="color: black">{{USER.username}}.'s personal info</h1>
+    </div>
+    <div style="margin-top: 50px; width: inherit; height: inherit; overflow: hidden;"  class="row-fluid">
+        <div style="    width: inherit  ; height: 213px; float:left; margin-top: 20px" class="span2">
+            <img style="height: 213px; width: auto" src={{USER.picture}}>
+        </div>
 
-        </tr>
-        </tbody>
-    </table>
-</div>
+        <div style="overflow: hidden; height: inherit; text-align: left " class="span8">
+            <h3 style="margin-left: 70px"><b style="color: #df691a">Email:</b> {{USER.email}}</h3>
+            <h3 style="margin-left: 70px"><b style="color: #df691a">First name:</b> {{USER.firstName}}</h3>
+            <h3 style="margin-left: 70px"><b style="color: #df691a">Last name:</b> {{USER.lastName}}</h3>
+            <h3 style="margin-left: 70px"><b style="color: #df691a">Address:</b> {{USER.address}}</h3>
+            <h3 style="margin-left: 70px"><b style="color: #df691a">Phone number:</b> {{USER.phone}}</h3>
+            <h3 style="margin-left: 70px"><b style="color: #df691a">User role:</b> {{USER.role}}</h3>
+        </div>
+    </div>
 </div>
