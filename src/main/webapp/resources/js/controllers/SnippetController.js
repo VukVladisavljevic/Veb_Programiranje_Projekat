@@ -369,7 +369,7 @@ angular.module("SnippetApp").controller('SnippetController', ['$scope', '$rootSc
                 });
 
                 for (var i = 0; i < $scope.SNIPPETS.length; i++) {
-                    if ($scope.SNIPPETS[i].description.includes($scope.searchDescription)) {
+                    if ($scope.SNIPPETS[i].description.toUpperCase().includes($scope.searchDescription.toUpperCase())) {
                         filteredList.push($scope.SNIPPETS[i]);
                     }
                 }
