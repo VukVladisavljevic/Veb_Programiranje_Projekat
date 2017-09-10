@@ -1,39 +1,37 @@
 <div class="row" ng-init="loadDetailedSnippet()" ng-show="isLogged()">
     <div>
-        <h3>Description: {{currentSnippet.description}}</h3>
+        <h3><b style="color: #df691a; margin-right: 20px">Description:</b> {{currentSnippet.description}}</h3>
         <hr>
-        <div style="width: 75%">{{currentSnippet.code}}</div>
+        <div>
+            <textarea style="float: left; display: inline-block; resize: none" cols="80" rows="20">{{currentSnippet.code}}</textarea>
 
-        <div style="width:50%; alignment: right; float: right">
-        <a ng-href="{{currentSnippet.repository}}">{{currentSnippet.repository}}</a><br/>
-        <br/>
+            <div style=" float:left" class="row-fluid">
+                <div style="margin-left: 40px; width: 300px; height: 300px;" class="span2">
+                    <img style="height: 300px; width: 300px" src={{currentSnippet.user.picture}}>
+                </div>
 
-            <p style="border:3px; border-style:solid; border-color:#FF0000; padding: 1em;">
-                Username: {{currentSnippet.user.username}}<br>Language: {{currentSnippet.programmingLanguage}}</p>
+                <div style="margin-left: 40px; overflow: hidden; height: inherit; ;text-align: left " class="span8">
+                    <h4><b style="text-align: center; margin-left:15px; color: #df691a">posted by:</b> {{currentSnippet.user.username}}</h4>
+                    <h4><b style="text-align: center; margin-left:15px;color: #df691a">tagged language:</b> {{currentSnippet.programmingLanguage}}</h4>
+
+                </div>
+            </div>
         </div>
-        <table class="table">
-            <thead>
-            <tr>
-                <td>
-                    <form ng-show="ableToDelete()" ng-submit="deleteSnippet()" role="form">
-                        <button class="btn btn-link" type="submit" >Remove</button>
-                    </form>
-                </td>
-                <td>
-                    <form ng-show="ableToBlock()" ng-submit="blockSnippet()" role="form">
-                        <button class="btn btn-link" type="submit" >Block</button>
-                    </form>
-                </td>
-                <td>
-                    <form ng-show="ableToUnblock()" ng-submit="unblockSnippet()" role="form">
-                        <button class="btn btn-link" type="submit" >Unblock</button>
-                    </form>
-                </td>
-            </tr>
-            </thead>
-        </table>
-
-        <h5>Comments: </h5>
+        <div style="clear:left">
+            <form style="float: left" ng-show="ableToDelete()" ng-submit="deleteSnippet()" role="form">
+                <button class="btn btn-link" type="submit" >Remove snippet</button>
+            </form>
+            <form style="float: left" ng-show="ableToBlock()" ng-submit="blockSnippet()" role="form">
+                <button class="btn btn-link" type="submit" >Block snippet</button>
+            </form>
+            <form style="float: left" ng-show="ableToUnblock()" ng-submit="unblockSnippet()" role="form">
+                <button class="btn btn-link" type="submit" >Unblock snippet</button>
+            </form>
+        </div>
+        <br>
+        <br>
+        <br>
+        <h5 style="float: left">Comments: </h5>
         <form ng-submit="sortComments()" role="form">
             <button class="btn btn-link" type="submit" >Sort comments</button>
         </form>
@@ -44,20 +42,31 @@
                     <td>
                         <div>
                             <button ng-disabled="!ableToRate(c)" style="float: left; clear: both;" ng-click="rateUp(c)"><img src="resources\css\icons\vote_up_icon.png"/></button>
-                            {{c.grade.positive}}
+
                         </div>
-                        <div>
+                        <a style="display: inline; margin-left: 5px; margin-top: 8px">{{c.grade.positive}}</a>
+                        <div style="margin-top: 3px">
                             <button ng-disabled="!ableToRate(c)" style="float: left; clear: both;" ng-click="rateDown(c)"><img src="resources\css\icons\vote_down_icon.png"/></button>
-                            {{c.grade.negative}}
+                        </div>
+                        <a style=" float:left; margin-left: 5px; margin-top: 5px">{{c.grade.negative}}</a>
+                    </td>
+                    <td>
+                        <textarea style="resize: none" cols="90" rows="3">{{c.text}}</textarea>
+                    </td>
+                    <td >
+                        <div style="text-align: right" class="row-fluid">
+                            <div style="width: 55px; height: 55px; float:left;" class="span2">
+                                <img style="height: 55px; width: 55px" src={{c.user.picture}}>
+                            </div>
+
+                            <div style="overflow: hidden; height: inherit; text-align: left " class="span8">
+                                <h8><b style="margin-top: 10px; margin-left:15px; color: #df691a">answered:</b> {{parseTimestamp(c.time)}}</h8><br>
+                                <h8><b style="margin-left:15px;color: #df691a">user:</b> {{c.user.username}}</h8>
+                            </div>
                         </div>
                     </td>
                     <td>
-                        {{c.text}}
-                    </td>
-                    <td>
-                        <p style="border:3px; border-style:solid; border-color:#FF0000; padding: 1em;">
-                            TIME: {{parseTimestamp(c.time)}}<br>user : {{c.user.username}}</p>
-                        <img src="{{c.user.picture}}" height="30" width="30" name="picture"/>
+                        <button ng-show="ableToDeleteComment(c)" ng-click="deleteComment(c)"><img src="resources\css\icons\remove_icon.png"/></button>
                     </td>
                 </tr>
                 </tbody>

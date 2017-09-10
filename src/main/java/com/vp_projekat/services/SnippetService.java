@@ -13,7 +13,7 @@ import java.util.ArrayList;
 @Service
 public interface SnippetService {
 
-    Snippet createSnippet(SnippetDTO snippetDTO);
+    String createSnippet(SnippetDTO snippetDTO);
 
     Snippet removeSnippet(SnippetDTO snippetDTO);
 

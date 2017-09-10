@@ -1,8 +1,10 @@
 package com.vp_projekat.services;
 
 import com.vp_projekat.DTOs.SnippetDTO;
+import com.vp_projekat.beans.ProgrammingLanguages;
 import com.vp_projekat.beans.Snippet;
 import com.vp_projekat.beans.Snippets;
+import com.vp_projekat.beans.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,18 +18,24 @@ import java.util.ArrayList;
 public class SnippetServiceImpl implements SnippetService {
 
     @Override
-    public Snippet createSnippet(SnippetDTO snippetDTO) {
+    public String createSnippet(SnippetDTO snippetDTO) {
         Snippets.load();
-        Snippet retSnippet = Snippets.getSnippet(snippetDTO.getId());
-        if(retSnippet != null)
+        if(!ProgrammingLanguages.getLanguage(snippetDTO.getProgrammingLanguage()))
         {
-            return null;
+            snippetDTO.setProgrammingLanguage("undefined");
+        }
+        if(Users.getUser(snippetDTO.getUser().getUsername()) == null){
+            return "BAD_REQUEST";
+        }
+        if(Users.getUser(snippetDTO.getUser().getUsername()).isBlocked())
+        {
+            return "BLOCKED";
         }
         Snippet newSnippet = new Snippet(snippetDTO.getDescription(), snippetDTO.getCode(),
                 snippetDTO.getProgrammingLanguage(), snippetDTO.getRepository(), snippetDTO.getUser());
 
         Snippets.addSnippet(newSnippet);
-        return  newSnippet ;
+        return  "OK" ;
     }
 
     @Override

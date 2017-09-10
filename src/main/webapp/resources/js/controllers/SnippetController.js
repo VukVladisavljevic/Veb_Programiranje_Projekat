@@ -86,7 +86,7 @@ angular.module("SnippetApp").controller('SnippetController', ['$scope', '$rootSc
         }
 
         $scope.ableToComment = function () {
-            if ($rootScope.currentSnippet.blocked === false) {
+            if ($rootScope.currentSnippet.blocked === false || $rootScope.USER.blocked !== true ) {
                 return true;
             } else {
                 return false;
@@ -129,15 +129,8 @@ angular.module("SnippetApp").controller('SnippetController', ['$scope', '$rootSc
                 dataType: 'text',
                 data: snippet,
                 success: function (data) {
-                    if (data !== null) {
-                        $rootScope.currentSnippet = JSON.parse(data);
-                        $window.location = '#allSnippets';
-
-                    }
-                    else {
-                        alert("ne valja dodavanje snipeta");
-                    }
-
+                    console.log(data);
+                    $window.location = '#allSnippets';
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     //toaster poruka
@@ -241,6 +234,7 @@ angular.module("SnippetApp").controller('SnippetController', ['$scope', '$rootSc
             for (var i = 0; i < $scope.SNIPPETS.length; i++) {
                 if (snippetID === $scope.SNIPPETS[i].id) {
                     $rootScope.currentSnippet = $scope.SNIPPETS[i];
+                    localStorage.setItem("CurrentSnippet",$scope.SNIPPETS[i]);
                 }
             }
             $location.path('/snippetDetails');
@@ -248,7 +242,13 @@ angular.module("SnippetApp").controller('SnippetController', ['$scope', '$rootSc
         }
 
         $scope.loadDetailedSnippet = function () {
-
+            if($rootScope.currentSnippet === "" || $rootScope.currentSnippet === undefined){
+                $rootScope.currentSnippet = JSON.parse(localStorage.getItem("CurrentSnippet"));
+                $rootScope.USER = JSON.parse("LoggedUser");
+                if(!$scope.$$phase) {
+                    $scope.$apply();
+                }
+            }
         }
         
         $scope.parseTimestamp = function (input) {
@@ -279,6 +279,35 @@ angular.module("SnippetApp").controller('SnippetController', ['$scope', '$rootSc
             });
         };
 
+        $scope.ableToDeleteComment = function (c) {
+            if (c.user.username === $rootScope.USER.username || $rootScope.USER.role === "admin") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        $scope.deleteComment = function (c) {
+            var comment = JSON.stringify({
+                "id": c.id,
+                "snippet": $rootScope.currentSnippet
+            });
+            var url = "/api/snippet/comment/delete";
+            $.ajax({
+                type: 'POST',
+                url: url,
+                contentType: 'application/json',
+                dataType: "text",
+                data: comment,
+                success: function (data) {
+                    console.log(data);
+                    $scope.reloadSnippet();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("GRESKA");
+                }
+            });
+        };
         $scope.rateUp = function (comment) {
             $scope.rating = "+";
             $scope.gradeComment(comment);

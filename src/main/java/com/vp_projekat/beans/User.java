@@ -18,7 +18,7 @@ public class User {
     public User() {}
 
     public User(String username, String password, String firstName, String lastName
-    ,String role, String phone, String email, String address, String picture) {
+    ,String role, String phone, String email, String address) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -27,7 +27,6 @@ public class User {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.picture = picture;
     }
 
     public String getUsername() {

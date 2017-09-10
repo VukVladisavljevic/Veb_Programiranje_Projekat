@@ -34,11 +34,11 @@ public class UserController {
     @RequestMapping(value = "/api/register",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> register(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<String> register(@RequestBody UserDTO userDTO) {
 
         logger.info("> register  user");
 
-        User retuser = userService.register(userDTO);
+        String retuser = userService.register(userDTO);
 
         if (retuser == null) {
             System.out.println(" User not created");
@@ -70,7 +70,7 @@ public class UserController {
     public ResponseEntity<User> login(@RequestBody UserDTO userDTO) {
 
         logger.info("> login  user");
-
+        System.out.println(userDTO.getUsername().equals("guest"));
         User retuser = userService.login(userDTO);
 
         if (retuser == null) {

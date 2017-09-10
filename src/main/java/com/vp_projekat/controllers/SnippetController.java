@@ -33,19 +33,19 @@ public class SnippetController {
     @RequestMapping(value="/api/snippet/create",
                     method = RequestMethod.POST,
                     consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Snippet> create(@RequestBody SnippetDTO snippetDTO){
+    public ResponseEntity<String> create(@RequestBody SnippetDTO snippetDTO){
         logger.info("> create new snippet");
 
-        Snippet retSnippet = snippetService.createSnippet(snippetDTO);
+        String retSnippet = snippetService.createSnippet(snippetDTO);
 
         if(retSnippet == null){
             System.out.println("Snippet not created");
-            return new ResponseEntity<Snippet>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
         }
 
         logger.info("< snippet created");
 
-        return new ResponseEntity<Snippet>(retSnippet, HttpStatus.OK);
+        return new ResponseEntity<String>(retSnippet, HttpStatus.OK);
     }
 
     @RequestMapping(value="/api/snippet/delete",

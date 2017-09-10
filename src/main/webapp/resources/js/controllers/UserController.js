@@ -23,7 +23,10 @@ angular.module("SnippetApp")
             };
             
             $scope.ableToBlock = function (user) {
-                if($rootScope.USER.role === "admin" && user.role !== "admin" && user.blocked === false){
+                if(user.role === "guest" || user.role === "admin" ){
+                    return false;
+                }
+                if($rootScope.USER.role === "admin" && user.blocked === false){
                     return true;
                 } else {
                     return false;
@@ -31,7 +34,10 @@ angular.module("SnippetApp")
             }
 
             $scope.ableToUnblock = function (user) {
-                if($rootScope.USER.role === "admin" && user.role !== "admin" && user.blocked === true){
+                if(user.role === "guest" || user.role === "admin"){
+                    return false;
+                }
+                if($rootScope.USER.role === "admin" && user.blocked === true){
                     return true;
                 } else {
                     return false;

@@ -87,13 +87,9 @@ angular.module("SnippetApp").controller('MainController', ['$rootScope', '$http'
                     contentType: "application/json",
                     data: json,
                     success: function (response) {
-                        var user = response;
-
-                        console.log("User successfully created ");
-                        console.log(user.name);
+                        console.log(response);
                     },
                     error: function (err) {
-                        console.log("nenene");
                         console.log(err);
 
                     }
@@ -160,7 +156,7 @@ angular.module("SnippetApp").controller('MainController', ['$rootScope', '$http'
         $scope.loginAsGuest = function()
         {
             var user = JSON.stringify({
-                "userName": "guest",
+                "username": "guest",
                 "password": "guest",
             });
             var url = "/api/login";
@@ -170,21 +166,13 @@ angular.module("SnippetApp").controller('MainController', ['$rootScope', '$http'
                 contentType : 'application/json',
                 dataType : "text",
                 data : user,
-                success: function (data) {
+                success : function(data) {
                     //redirekt
-                    if (data !== null) {
-                        localStorage.setItem("LoggedUser", data);
-                        $rootScope.USER = JSON.parse(data);
-                        $window.location = '#allSnippets';
-                        console.log("logged in");
-                    }
-                    else {
-                        console.log("Not logged in");
-                    }
+                    localStorage.setItem("LoggedUser",data);
+                    $rootScope.USER = JSON.parse(data);
+                    $window.location = '#snippets';
                 },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    //toaster poruka
-
+                error : function(XMLHttpRequest, textStatus, errorThrown) {
                 }
             });
         }

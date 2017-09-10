@@ -13,7 +13,7 @@ import java.util.ArrayList;
 @Service
 public interface UserService {
 
-    User register(UserDTO userDTO);
+    String register(UserDTO userDTO);
 
     User login(UserDTO userDTO);
 
